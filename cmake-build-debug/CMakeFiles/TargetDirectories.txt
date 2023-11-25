@@ -1,0 +1,3 @@
+E:/Copa-Biopark/cmake-build-debug/CMakeFiles/Copa-Biopark.dir
+E:/Copa-Biopark/cmake-build-debug/CMakeFiles/edit_cache.dir
+E:/Copa-Biopark/cmake-build-debug/CMakeFiles/rebuild_cache.dir
