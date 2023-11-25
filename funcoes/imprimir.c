@@ -1,58 +1,59 @@
+void imprimirItem(ArvBin *raiz) {
+    char nomeCompleto[41];
+    snprintf(nomeCompleto, sizeof(nomeCompleto), "%s %s", (*raiz)->primeiroNome, (*raiz)->sobrenome);
+    char textoElite[4];
+    if ((*raiz)->eElite == 1) {
+        strcpy(textoElite, "Sim");
+    } else {
+        strcpy(textoElite, "Não");
+    }
+    printf("%-10d%-40s%-10d%-10s\n", (*raiz)->numero, nomeCompleto, (*raiz)->idade, textoElite);
+}
 
 // Método em Ordem
-void imprimirArvoreEmOrdem(ArvBin *raiz) {
+void imprimirEmOrdem(ArvBin *raiz) {
     if (*raiz != NULL) {
-        imprimirArvoreEmOrdem(&((*raiz)->esq));
-        char nomeCompleto[41];
-        snprintf(nomeCompleto, sizeof(nomeCompleto), "%s %s", (*raiz)->primeiroNome, (*raiz)->sobrenome);
-        printf("%-10d%-40s%-10d\n", (*raiz)->numero, nomeCompleto, (*raiz)->idade);
-        imprimirArvoreEmOrdem(&((*raiz)->dir));
+        imprimirEmOrdem(&((*raiz)->esq));
+        imprimirItem(raiz);
+        imprimirEmOrdem(&((*raiz)->dir));
     }
 }
 
 // Método Pré-Ordem
-void imprimirArvorePreOrdem(ArvBin *raiz) {
+void imprimirPreOrdem(ArvBin *raiz) {
     if (*raiz != NULL) {
-        char nomeCompleto[41];
-        snprintf(nomeCompleto, sizeof(nomeCompleto), "%s %s", (*raiz)->primeiroNome, (*raiz)->sobrenome);
-        printf("%-10d%-40s%-10d\n", (*raiz)->numero, nomeCompleto, (*raiz)->idade);
-        imprimirArvorePreOrdem(&((*raiz)->esq));
-        imprimirArvorePreOrdem(&((*raiz)->dir));
+        imprimirItem(raiz);
+        imprimirPreOrdem(&((*raiz)->esq));
+        imprimirPreOrdem(&((*raiz)->dir));
     }
 }
 
 // Método Pós-Ordem
-void imprimirArvorePosOrdem(ArvBin *raiz) {
+void imprimirPosOrdem(ArvBin *raiz) {
     if (*raiz != NULL) {
-        imprimirArvorePosOrdem(&((*raiz)->esq));
-        imprimirArvorePosOrdem(&((*raiz)->dir));
-        char nomeCompleto[41];
-        snprintf(nomeCompleto, sizeof(nomeCompleto), "%s %s", (*raiz)->primeiroNome, (*raiz)->sobrenome);
-        printf("%-10d%-40s%-10d\n", (*raiz)->numero, nomeCompleto, (*raiz)->idade);
+        imprimirPosOrdem(&((*raiz)->esq));
+        imprimirPosOrdem(&((*raiz)->dir));
+        imprimirItem(raiz);
     }
 }
 
 // Método Bidimensional
-void printTree(no *aux, int espaco) {
+void imprimirBidimensional(no *aux, int espaco) {
     if (aux == NULL) {
         return;
     }
 
-    // Aumenta o espaçamento entre níveis
     espaco += 5;
 
-    // Processa o nó da direita
-    printTree(aux->esq, espaco);
+    imprimirBidimensional(aux->esq, espaco);
 
-    // Imprime o nó atual com espaçamento
     printf("\n");
     for (int i = 5; i < espaco; i++) {
         printf(" ");
     }
     printf("%d\n", aux->numero);
 
-    // Processa o nó da esquerda
-    printTree(aux->dir, espaco);
+    imprimirBidimensional(aux->dir, espaco);
 }
 
 
@@ -64,7 +65,7 @@ void imprimirArvore(ArvBin *raiz, int altura) {
         char input[10], *endInput;
         int selector;
 
-        printf("==================================== MÉTODO DE IMPRESSÃO ===================================\n");
+        printf(CYN "==================================== MÉTODOS DE IMPRESSÃO ===================================\n" CR);
         printf("1 - Em Ordem\n");
         printf("2 - Pré-Ordem\n");
         printf("3 - Pós-Ordem\n");
@@ -75,7 +76,7 @@ void imprimirArvore(ArvBin *raiz, int altura) {
 
         selector = (int) strtol(input, &endInput, 10);
         if (*endInput != '\0' && *endInput != '\n') {
-            printf("Entrada inválida. Digite um número.\n");
+            printf(RED "Entrada inválida. Digite um número.\n" CR);
             sleep(2);
             continue;
         }
@@ -86,8 +87,12 @@ void imprimirArvore(ArvBin *raiz, int altura) {
             // Método em Ordem
             case 1:
                 system("cls");
-                printf("%-10s%-40s%-10s\n", "Número:", "Nome:", "Idade:");
-                imprimirArvoreEmOrdem(raiz);
+                printf(CYN
+                       "====================================== PARTICIPANTES ======================================\n"
+                       CR);
+                printf("%-10s%-40s%-10s%-10s\n", "Número:", "Nome:", "Idade:", "Elite:");
+                imprimirEmOrdem(raiz);
+                printf(CYN "--------------------------------------------------------------------------------------------\n" CR);
                 sleep(4);
                 system("cls");
                 break;
@@ -95,8 +100,12 @@ void imprimirArvore(ArvBin *raiz, int altura) {
                 // Método Pré-Ordem
             case 2:
                 system("cls");
-                printf("%-10s%-40s%-10s\n", "Número:", "Nome:", "Idade:");
-                imprimirArvorePreOrdem(raiz);
+                printf(CYN
+                       "====================================== PARTICIPANTES ======================================\n"
+                       CR);
+                printf("%-10s%-40s%-10s%-10s\n", "Número:", "Nome:", "Idade:", "Elite:");
+                imprimirPreOrdem(raiz);
+                printf(CYN "--------------------------------------------------------------------------------------------\n" CR);
                 sleep(4);
                 system("cls");
                 break;
@@ -104,8 +113,12 @@ void imprimirArvore(ArvBin *raiz, int altura) {
                 // Método Pós-Ordem
             case 3:
                 system("cls");
-                printf("%-10s%-40s%-10s\n", "Número:", "Nome:", "Idade:");
-                imprimirArvorePosOrdem(raiz);
+                printf(CYN
+                       "====================================== PARTICIPANTES ======================================\n"
+                       CR);
+                printf("%-10s%-40s%-10s%-10s\n", "Número:", "Nome:", "Idade:", "Elite:");
+                imprimirPosOrdem(raiz);
+                printf(CYN "--------------------------------------------------------------------------------------------\n" CR);
                 sleep(4);
                 system("cls");
                 break;
@@ -113,7 +126,7 @@ void imprimirArvore(ArvBin *raiz, int altura) {
                 // Método Pós-Ordem
             case 4:
                 system("cls");
-                printTree(*raiz, 0);
+                imprimirBidimensional(*raiz, 0);
                 printf("\n");
                 sleep(4);
                 system("cls");
@@ -121,13 +134,13 @@ void imprimirArvore(ArvBin *raiz, int altura) {
 
                 // Case para voltar
             case 0:
-                printf("Voltando...!");
+                printf(BLK "Voltando...!" CR);
                 running = 0;
                 break;
 
                 // Case de opção inválida
             default:
-                printf("Opção inválida!");
+                printf(RED "Opção inválida!" CR);
                 sleep(2);
                 break;
         }

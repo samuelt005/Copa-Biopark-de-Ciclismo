@@ -11,7 +11,7 @@ int contarNo(no *no_liberar) {
 
 int contarArvore(ArvBin *raiz) {
     if (raiz == NULL) {
-        printf("Não há dados para contar!");
+        printf(BLK "Não há dados para contar!" CR);
         sleep(2);
         return 0;
     } else {

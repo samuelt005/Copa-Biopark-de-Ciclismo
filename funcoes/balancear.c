@@ -26,7 +26,7 @@ ArvBin encontrarItem(ArvBin *inicioLista, int posicao) {
         strcpy(copia->sobrenome, atual->sobrenome);
         copia->eElite = atual->eElite;
     } else {
-        printf("Erro na alocação...\n");
+        printf(RED "Erro na alocação...\n" CR);
         exit(0);
     }
 
@@ -48,7 +48,7 @@ void insereBalanceado(ArvBin *raiz, ArvBin *novo) {
         while (atual != NULL) {
             ant = atual;
             if ((*novo)->numero == atual->numero) {
-                printf("Elemento já existe...");
+                printf(RED "Elemento já existe..." CR);
                 sleep(2);
                 return;
             }
@@ -89,7 +89,7 @@ void balancearArvore(ArvBin *raiz) {
     if (inicioLista != NULL) {
         *inicioLista = NULL;
     } else {
-        printf("Erro na alocação...\n");
+        printf(RED "Erro na alocação...\n" CR);
         exit(0);
     }
 

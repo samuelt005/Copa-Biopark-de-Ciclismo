@@ -14,7 +14,7 @@ int main() {
         system("cls"); //Limpeza do terminal
 
         //Menu principal
-        printf("==================================== MENU PRINCIPAL ===================================\n");
+        printf(CYN "==================================== MENU PRINCIPAL ===================================\n" CR);
         printf("1 - Cadastrar Participante\n");
         printf("2 - Remover Participante\n");
         printf("3 - Listar Participantes\n");
@@ -28,7 +28,8 @@ int main() {
 
         selector = (int) strtol(input, &endInput, 10);
         if (*endInput != '\0' && *endInput != '\n') {
-            printf("Entrada inválida. Digite um número.\n");
+            system("cls");
+            printf(RED "Entrada inválida. Digite um número.\n" CR);
             sleep(2);
             continue;
         }
@@ -52,7 +53,7 @@ int main() {
                 system("cls");
                 break;
 
-                // Case imprimir a árvore binária
+                // Case imprimirItem a árvore binária
             case 3:
                 system("cls");
                 altura = alturaArvore(*raiz);
@@ -95,7 +96,7 @@ int main() {
                 //Case para encerrar o programa
             case 0:
                 printf("Saindo... volte sempre!");
-                printf(" :)\n");
+                printf(GRN " :)\n" CR);
                 sleep(2);
                 liberaArvBin(raiz);
                 running = 0;
@@ -103,7 +104,7 @@ int main() {
 
                 //Case de opção inválida
             default:
-                printf("Opção inválida!");
+                printf(RED "Opção inválida!" CR);
                 sleep(2);
                 break;
         } //End Switch

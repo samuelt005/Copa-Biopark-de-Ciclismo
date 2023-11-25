@@ -12,7 +12,7 @@ void removeNo(ArvBin *raiz, int aExcluir) {
                     // Se for uma folha, a árvore ficará vazia
                     free(atual);
                     *raiz = NULL;
-                    printf("Participante número %d removido.\n", aExcluir);
+                    printf(GRN "Participante número %d removido.\n" CR, aExcluir);
                     sleep(2);
                     return;
                 } else if (atual->esq == NULL) {
@@ -49,7 +49,7 @@ void removeNo(ArvBin *raiz, int aExcluir) {
                         ant->dir = NULL;
                     }
                     system("cls");
-                    printf("Participante número %d removido.\n", aExcluir);
+                    printf(GRN "Participante número %d removido.\n" CR, aExcluir);
                     free(atual);
                     sleep(2);
                     return;
@@ -61,7 +61,7 @@ void removeNo(ArvBin *raiz, int aExcluir) {
                         ant->dir = atual->dir;
                     }
                     system("cls");
-                    printf("Participante número %d removido.\n", aExcluir);
+                    printf(GRN "Participante número %d removido.\n" CR, aExcluir);
                     free(atual);
                     sleep(2);
                     return;
@@ -73,7 +73,7 @@ void removeNo(ArvBin *raiz, int aExcluir) {
                         ant->dir = atual->esq;
                     }
                     system("cls");
-                    printf("Participante número %d removido.\n", aExcluir);
+                    printf(GRN "Participante número %d removido.\n" CR, aExcluir);
                     free(atual);
                     sleep(2);
                     return;
@@ -96,7 +96,7 @@ void removeNo(ArvBin *raiz, int aExcluir) {
                     free(substituto);
                 }
             }
-            printf("Participante número %d removido.\n", aExcluir);
+            printf(GRN "Participante número %d removido.\n" CR, aExcluir);
             sleep(2);
             return;
         }
@@ -109,20 +109,24 @@ void removeNo(ArvBin *raiz, int aExcluir) {
         }
     }
 
-    printf("Participante não encontrado!\n");
+    printf(RED "Participante não encontrado!\n" CR);
     sleep(2);
 }
 
 
 void aExcluir(ArvBin *raiz) {
     if (*raiz == NULL) {
-        printf("Não há participantes para remover!");
+        printf(BLK "Não há participantes para remover!" CR);
         sleep(2);
         return;
     }
 
-    printf("%-10s%-40s%-10s\n", "Número:", "Nome:", "Idade:");
-    imprimirArvoreEmOrdem(raiz);
+    printf(CYN
+           "====================================== PARTICIPANTES ======================================\n"
+           CR);
+    printf("%-10s%-40s%-10s%-10s\n", "Número:", "Nome:", "Idade:", "Elite:");
+    imprimirEmOrdem(raiz);
+    printf(CYN "--------------------------------------------------------------------------------------------\n" CR);
 
     int aExcluir;
     char input[10], *endInput;
@@ -132,7 +136,7 @@ void aExcluir(ArvBin *raiz) {
 
     aExcluir = (int) strtol(input, &endInput, 10);
     if (*endInput != '\0' && *endInput != '\n') {
-        printf("Entrada inválida.\n");
+        printf(RED "Entrada inválida.\n" CR);
         sleep(2);
         return;
     } else {

@@ -26,7 +26,7 @@ void insereArvBin(ArvBin *raiz) {
     char input[21], *endInput;
 
     if (novo == NULL) {
-        printf("Sem memória disponível!\n");
+        printf(RED "Sem memória disponível!\n" CR);
         exit(0);
     }
 
@@ -36,7 +36,7 @@ void insereArvBin(ArvBin *raiz) {
 
     novo->idade = (int) strtol(input, &endInput, 10);
     if (*endInput != '\0' && *endInput != '\n') {
-        printf("Entrada inválida.\n");
+        printf(RED "Entrada inválida.\n" CR);
         sleep(2);
         return;
     }
@@ -58,10 +58,10 @@ void insereArvBin(ArvBin *raiz) {
     printf("Deseja participar da categoria Elite (S/N)?\n");
 
     if (fgets(input, sizeof(input), stdin) == NULL) {
-        printf("Erro ao ler a entrada.\n");
+        printf(RED "Erro ao ler a entrada.\n" CR);
         exit(1);
     } else if (input[1] != '\n' && input[1] != '\0') {
-        printf("Entrada inválida.\n");
+        printf(RED "Entrada inválida.\n" CR);
         sleep(2);
         return;
     }
@@ -76,7 +76,7 @@ void insereArvBin(ArvBin *raiz) {
         sleep(2);
         novo->eElite = 0;
     } else {
-        printf("Entrada inválida.\n");
+        printf(RED "Entrada inválida.\n" CR);
         sleep(2);
         return;
     }
@@ -93,7 +93,7 @@ void insereArvBin(ArvBin *raiz) {
         while (atual != NULL) {
             ant = atual;
             if (novo->numero == atual->numero) {
-                printf("Elemento já existe...");
+                printf(RED "Elemento já existe..." CR);
                 sleep(2);
                 free(novo);
                 return;

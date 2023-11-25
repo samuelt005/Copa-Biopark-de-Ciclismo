@@ -20,16 +20,18 @@ void editarNo(ArvBin *raiz, int aEditar) {
     no *noAEditar = encontrarNo(raiz, aEditar);
 
     if (noAEditar == NULL) {
-        printf("Participante não encontrado!\n");
+        printf(RED "Participante não encontrado!\n" CR);
         return;
     }
 
     system("cls");
 
-    printf("%-10s%-40s%-10s\n", "Número:", "Nome:", "Idade:");
-    char nomeCompleto[41];
-    snprintf(nomeCompleto, sizeof(nomeCompleto), "%s %s", noAEditar->primeiroNome, noAEditar->sobrenome);
-    printf("%-10d%-40s%-10d\n\n", noAEditar->numero, nomeCompleto, noAEditar->idade);
+    printf(CYN
+           "================================= PARTICIPANTE SELECIONADO =================================\n"
+           CR);
+    printf("%-10s%-40s%-10s%-10s\n", "Número:", "Nome:", "Idade:", "Elite:");
+    imprimirItem(&noAEditar);
+    printf(CYN "--------------------------------------------------------------------------------------------\n" CR);
 
     printf("1 - Primeiro nome\n");
     printf("2 - Sobrenome\n");
@@ -41,7 +43,7 @@ void editarNo(ArvBin *raiz, int aEditar) {
 
     selector = (int) strtol(input, &endInput, 10);
     if (*endInput != '\0' && *endInput != '\n') {
-        printf("Entrada inválida.\n");
+        printf(RED "Entrada inválida.\n" CR);
         sleep(2);
         return;
     }
@@ -59,7 +61,7 @@ void editarNo(ArvBin *raiz, int aEditar) {
                 noAEditar->primeiroNome[len - 1] = '\0';
             }
             system("cls");
-            printf("Participante editado com sucesso!");
+            printf(GRN "Participante editado com sucesso!" CR);
             break;
 
             // Editar sobrenome
@@ -72,7 +74,7 @@ void editarNo(ArvBin *raiz, int aEditar) {
                 noAEditar->sobrenome[len - 1] = '\0';
             }
             system("cls");
-            printf("Participante editado com sucesso!");
+            printf(GRN "Participante editado com sucesso!" CR);
             break;
 
             // Editar idade
@@ -84,7 +86,7 @@ void editarNo(ArvBin *raiz, int aEditar) {
 
             noAEditar->idade = (int) strtol(input, &endInput, 10);
             if (*endInput != '\0' && *endInput != '\n') {
-                printf("Entrada inválida.\n");
+                printf(RED "Entrada inválida.\n" CR);
                 sleep(2);
                 return;
             }
@@ -92,7 +94,7 @@ void editarNo(ArvBin *raiz, int aEditar) {
             noAEditar->numero = geraNumero(noAEditar->idade, noAEditar->eElite);
 
             system("cls");
-            printf("Participante editado com sucesso!\n");
+            printf(GRN "Participante editado com sucesso!\n" CR);
             printf("Novo número emitido: %d", noAEditar->numero);
             balancearArvore(raiz);
             break;
@@ -103,10 +105,10 @@ void editarNo(ArvBin *raiz, int aEditar) {
             printf("Deseja participar da categoria Elite (S/N)?\n");
 
             if (fgets(input, sizeof(input), stdin) == NULL) {
-                printf("Erro ao ler a entrada.\n");
+                printf(RED "Erro ao ler a entrada.\n" CR);
                 exit(1);
             } else if (input[1] != '\n' && input[1] != '\0') {
-                printf("Entrada inválida.\n");
+                printf(RED "Entrada inválida.\n" CR);
                 return;
             }
 
@@ -119,6 +121,7 @@ void editarNo(ArvBin *raiz, int aEditar) {
                 } else {
                     noAEditar->eElite = 1;
                     noAEditar->numero = geraNumero(noAEditar->idade, noAEditar->eElite);
+                    printf(GRN "Participante editado com sucesso!\n" CR);
                     printf("Novo número emitido: %d", noAEditar->numero);
                     balancearArvore(raiz);
                 }
@@ -130,24 +133,25 @@ void editarNo(ArvBin *raiz, int aEditar) {
                 } else {
                     noAEditar->eElite = 0;
                     noAEditar->numero = geraNumero(noAEditar->idade, noAEditar->eElite);
+                    printf(GRN "Participante editado com sucesso!\n" CR);
                     printf("Novo número emitido: %d", noAEditar->numero);
                     balancearArvore(raiz);
                 }
             } else {
                 system("cls");
-                printf("Entrada inválida.\n");
+                printf(RED "Entrada inválida.\n" CR);
                 return;
             }
             break;
 
             // Case para voltar
         case 0:
-            printf("Voltando...!");
+            printf(BLK "Voltando...!" CR);
             break;
 
             // Case de opção inválida
         default:
-            printf("Opção inválida!");
+            printf(RED "Opção inválida!" CR);
             sleep(2);
             break;
     }
@@ -155,13 +159,17 @@ void editarNo(ArvBin *raiz, int aEditar) {
 
 void aEditar(ArvBin *raiz) {
     if (*raiz == NULL) {
-        printf("Não há participantes para editar!");
+        printf(BLK "Não há participantes para editar!" CR);
         sleep(2);
         return;
     }
 
-    printf("%-10s%-40s%-10s\n", "Número:", "Nome:", "Idade:");
-    imprimirArvoreEmOrdem(raiz);
+    printf(CYN
+           "====================================== PARTICIPANTES ======================================\n"
+           CR);
+    printf("%-10s%-40s%-10s%-10s\n", "Número:", "Nome:", "Idade:", "Elite:");
+    imprimirEmOrdem(raiz);
+    printf(CYN "--------------------------------------------------------------------------------------------\n" CR);
 
     int aEditar;
     char input[10], *endInput;
@@ -171,7 +179,7 @@ void aEditar(ArvBin *raiz) {
 
     aEditar = (int) strtol(input, &endInput, 10);
     if (*endInput != '\0' && *endInput != '\n') {
-        printf("Entrada inválida.\n");
+        printf(RED "Entrada inválida.\n" CR);
         sleep(2);
         return;
     } else {

@@ -731,7 +731,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "binaria"
+			"value" : "copa-biopark"
 		},
 		{
 			"name" : "CMAKE_RANLIB",
@@ -1183,6 +1183,42 @@
 		},
 		{
 			"name" : "binaria_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "E:/Copa-Biopark"
+		},
+		{
+			"name" : "copa-biopark_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "E:/Copa-Biopark/cmake-build-debug"
+		},
+		{
+			"name" : "copa-biopark_IS_TOP_LEVEL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "ON"
+		},
+		{
+			"name" : "copa-biopark_SOURCE_DIR",
 			"properties" : 
 			[
 				{

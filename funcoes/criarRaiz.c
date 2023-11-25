@@ -4,7 +4,7 @@ ArvBin *criaArvBin() {
     if (raiz != NULL) {
         *raiz = NULL;
     } else {
-        printf("Erro na alocação...\n");
+        printf(RED "Erro na alocação...\n" CR);
         exit(0);
     }
     return raiz;

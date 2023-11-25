@@ -30,6 +30,7 @@ int ate29 = 200;
 int ate39 = 300;
 int acima40 = 400;
 
+#include "colorCodes.c"
 #include "funcoes/funcoes.h"
 
 #endif
